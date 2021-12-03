@@ -4,14 +4,16 @@ import { ChangeEvent } from 'react';
 // import { Form } from '@unform/web';
 // import { FormHandles } from '@unform/core';
 // import Input from './components/Input';
-import ReactSelect, { SingleValue } from 'react-select';
-import Input from './components/Input2'
-import { inputs } from './utils/inputs.data';
+import ReactSelect from './components/ReactSelect';
+
+
+
 
 import './styles/global.css';
 // type OnChangeType = InputHTMLAttributes<HTMLInputElement> & {
 //   value: string;
 // }
+
 
 type OptionType = {
   value: string;
@@ -31,17 +33,20 @@ function App() {
     console.log(e.target.value)
   }
 
-  function handleSelect(option: SingleValue<OptionType>) {
-    console.log(option?.value);
+  function handleSelect(option :OptionType) {
+    console.log(option.value);
   }
 
   return (
-    <div className="container">
-      <div className="wrapper">
+    <div data-testid="containerId" className="container">
+      <div data-testid="wrapperId" className="wrapper">
+
         <ReactSelect
-          onChange={option => handleSelect(option)}
+          placeholder="Selecione a empresa" 
           options={options}
+          onChange={option => handleSelect(option as OptionType)} 
         />
+
         <div className="wrapper-input">
           <input
             name="codigoProduto"
